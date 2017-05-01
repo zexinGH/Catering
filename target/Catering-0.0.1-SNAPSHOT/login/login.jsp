@@ -1,0 +1,157 @@
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page language="java" contentType="text/html; charset=GBK"
+	pageEncoding="GBK"%>
+<head>
+	<meta name="decorator" content="login">
+	<title>Login</title>
+
+
+	<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<script type="text/javascript">
+		function document.onkeydown() {
+	     	if(event.keyCode==13) {
+	     	
+               document.getElementById("login").click(); 
+               return false;     
+        	}
+	    }
+	     function jiaoyan(form){
+		        
+		       if(form.userName.value.trim() == ""){
+		           alert("您必须输入姓名");
+		           return false;
+		       }
+		   
+		       if(form.password.value.trim() == ""){
+		           alert("您必须输入密码");
+		           return false;
+		       }
+		       return true;
+		   }
+	    function check() {
+	    	var username = document.all("userName").value;
+	    	var password = document.all("password").value;
+	    	var ret = false;
+	   
+	    	if(isBlank(username)) {
+	    	    alert('ab用户名不能为空cd');
+	    		document.getElementById("infoLogin").style.display = "block";
+	    		document.getElementById("hint").innerHTML = "用户名不能为空"
+	    		document.all('userName').focus();
+	    		alert('ab密码能为空为空cd');
+	    		return false;
+	    	}
+	    	 alert('ab用户名cd');
+	    	
+	    	if(isBlank(password)) {
+	    	 alert('ab密码不能为空为空cd');
+	    		document.getElementById("infoLogin").style.display = "block";
+	    		document.getElementById("hint").innerHTML = "密码不能为空"
+	    		document.all('password').focus();
+	    		return false;
+	    	}
+	    
+	    	if(ret) {
+	    		document.getElementById("login").disabled = true;
+	    		document.getElementById("reset").disabled = true;
+	    		return doCommand(this, 9, '', true);
+	    	}
+	    	return false;
+	    }
+	  
+	    
+	</script>
+</head>
+
+<body id="bodyLogin" onload="document.all('userName').focus();">
+<form method="post" id="loginForm" name="loginForm" action="checkUser" onsubmit="return check()">
+<div class="logoLogin"></div>
+	<div id="loginContainer">
+		<center>
+			<div id="loginContent">
+				<div id="loginWrapper">
+					<div class="borderLeft"></div>
+					<div class="borderRight"></div>
+					<div class="borderTop">
+						<div class="topL1">
+							<div class="topL2">
+								<div class="topL3"></div>
+							</div>
+						</div>
+					</div>
+					<div class="borderBottom">
+						<div class="bottomL1">
+							<div class="bottomL2">
+								<div class="bottomL3"></div>
+							</div>
+						</div>
+					</div>
+
+					<div id="centerCon">
+						<!--Logo区开始-->
+						<div id="loginLogo"><lable><font color="blue" size="8" face="楷体" >龙湖餐饮</font> </lable></div>
+						<!--Logo区结束-->
+
+						<!--登录信息输入开始-->
+							<div id="conForm">
+								<div class="userPass">
+									<label class="fB">
+										用户名：
+									</label>
+									<input name="userName" type="text" class="midinput" maxlength="20" >
+								</div>
+								<div class="password" id="center" >
+									<label class="fB">
+										角色：
+									</label>
+									<select name="roleId" class="selectmiddle" >
+									    <s:iterator value="roleList">
+										<option value="<s:property value="roleId"/>" selected="selected"><s:property value="roleName"/>
+										</s:iterator>
+									</select>
+								</div>
+								<div class="userPass">
+									<label id="passwordPrompt" class="fB">
+										密码：
+									</label>
+									<input name="password" type="password" class="midinput" maxlength="20">
+								</div>
+								<div class="login">
+									<input name="login" id="login" value="登录" class="loginBtn" type="submit"
+										  onmouseover="this.style.backgroundPosition='left -24px'"
+										onmouseout="this.style.backgroundPosition='left 0px'">
+									<input name="reset" id="reset" value="重置" class="loginBtn"
+										type="reset" onmouseover="this.style.backgroundPosition='left -24px'"
+										onmouseout="this.style.backgroundPosition='left 0px'">
+								</div>
+							</div>
+							<!--登录信息输入结束-->
+								<div id="infoLogin" style="display: none;">
+							<div class="infoBorder">
+								<span></span>
+								<font id="hint"></font>
+							</div>
+						</div>
+						<!--登陆失败提示信息结束-->
+						<div id="j_role_tr" style="display:none;">
+							<select id="j_role" name="j_role" class="selectmiddle">
+								<option value="A1" />
+							</select>
+						</div>
+						
+					
+					</div>
+				</div>
+			</div>
+		</center>
+		<!-- 
+		<div class="loginBottom">
+			<span id="copyright"><fmt:message key="ac.system.login.bank" /></span>
+		</div>
+		 -->
+	</div>
+	</form>
+</body>

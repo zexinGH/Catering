@@ -1,0 +1,100 @@
+@import url(global.css);
+
+/* These id's are static, so keep the same names */
+a:link {color: #42417B;text-decoration:none;}
+a:visited {color: #83006f;text-decoration:none;}
+a:hover {color: #bc2931; text-decoration:underline;}
+a:active {color: #bc2931;}
+
+div#menu {
+    padding: 0px;
+}
+#menuDiv {
+   /* background-color: #EEE;*/
+    color: #000;
+	padding: 0px;
+	margin-top:5px;
+}
+#menuDiv #admintree {
+	padding-left:4px;
+	margin-left:4px;
+	list-style:none;
+}
+#menuList {
+  margin: 0px;
+  padding: 10px 0px 10px 5px;
+}
+
+li.menubar {
+  background: url(/images/menu/tree/minus.gif) no-repeat 0em 0.3em;
+  font-size: 12px;
+  line-height: 22px;
+  list-style: none outside;
+  text-indent:8px;
+}
+
+.menu, .submenu {
+  display: none;
+  margin-left: 15px;
+  padding: 0px;
+}
+
+.menu li, .submenu li  {
+  background: url(/images/menu/tree/book_titel.gif) no-repeat 0em 0.3em;
+  list-style: none outside;
+}
+
+li.menubar a.standalone {
+  background: url(/images/menu/tree/book_titel.gif) no-repeat 0em 0.2em !important;
+}
+
+a.actuator, a.standalone {
+  background-color: transparent;
+  color: #003377;
+  font-size: 12px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+.menu li a, .submenu li a {
+  background-color: transparent;
+   color: #003377;
+  font-size: 12px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+a.actuator:hover, .menu li a:hover, submenu li a:hover, li a.standalone:hover {
+  text-decoration: underline;
+
+}
+a.actuator:hover{
+ 	font-weight:bold;
+ 	
+}
+a.actuator:active, .menu li a:active, submenu li a:active, li a.standalone:active {
+	font-weight:bold;
+}
+
+/* styles to allow for base links */
+li a.base, li a.base:visited {
+  background-color: transparent;
+  color: #000;
+  font-size: 12px;
+  padding-left: 0px;
+  text-decoration: none;
+}
+
+li a.base:hover {
+  color: #CC0000;
+  text-decoration: none;
+}
+
+span.key {
+  text-decoration: underline;
+}
+
+a.highlight {
+    color: #004375 !important;
+    font-weight: bold;
+}

@@ -1,0 +1,205 @@
+
+.tableTop
+{
+    BORDER-RIGHT: black 1pt;
+    BORDER-TOP: black 1pt;
+    BORDER-LEFT: black 1pt;
+    BORDER-BOTTOM: #FFBA14 1pt solid;
+    BACKGROUND-COLOR: whitesmoke
+    width: 100%;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	height: 24px;
+}
+.tableMemo
+{
+    BORDER-RIGHT: #DCDFE4 1pt solid;
+    BORDER-TOP: #DCDFE4 1pt solid;
+    BORDER-LEFT: #DCDFE4 1pt solid;
+    BORDER-BOTTOM: #DCDFE4 1pt solid;
+    BACKGROUND-COLOR: #F3F7FF;
+    width: 98%;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	height: 24px;
+	color:#4F4F4F;
+	font-size:12px;
+}
+.tableMiddle {
+	text-align: center;
+	border: 0px;
+	width: 100%;
+	height: 280px;
+ }
+.tableMiddle1 {
+	text-align: center;
+	border: 0px;
+	width: 98%;
+	font-size:12px;
+ }
+ .tableIn {
+	text-align: center;
+	width: 85%;
+ }
+
+.commonTable{
+	WIDTH: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+.tdList
+{
+    text-align: center;
+    BACKGROUND-COLOR: white;
+    height: 19;
+}
+.mainTitle {
+	font-weight: 700;
+	font-size: 18pt;
+	color: black;
+	font-family: "黑体";
+	vertical-align: middle;
+}
+.title1
+{
+    FONT-SIZE: 12px;
+    COLOR: #000000;
+    LINE-HEIGHT: 150%;
+    FONT-FAMILY: "宋体";
+    BACKGROUND-COLOR: white
+}
+.title2
+{
+	FONT-SIZE: 12px;
+    COLOR: #000000;
+    LINE-HEIGHT: 150%;
+    FONT-FAMILY: "宋体";
+    BACKGROUND-COLOR: white
+}
+.list_title
+{
+    FONT-SIZE: 12px;
+    COLOR: #000000;
+    LINE-HEIGHT: 150%;
+    FONT-FAMILY: "宋体";
+    BACKGROUND-COLOR: white
+}
+.remark {
+	FONT-SIZE: 12px;
+	FONT-FAMILY: "宋体";
+	color: #000000;
+	font-weight: bold;
+}
+.button
+{
+    font-size: 9pt;
+    color: #000000;
+    padding: 2px 0px 0px 0px;
+	background-color:#F4F9FF;    
+    height: 19px;
+	BORDER: #B7BAC1 1pt solid;
+}
+
+.comments
+{
+    FONT-SIZE: 10px;
+    FONT-FAMILY: "宋体";
+}
+a
+{
+color:#000000;
+TEXT-DECORATION: none;
+}
+A:link
+{
+    FONT-WEIGHT: 500;
+	FONT-SIZE: 12px;
+    COLOR: #000000;
+}
+A:visited
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 12px;
+    COLOR: #000000;
+}
+A:hover
+{
+    FONT-WEIGHT: 500;
+	FONT-SIZE: 12px;
+    COLOR: #000000;
+}
+A:active {
+    FONT-WEIGHT: 500;
+	FONT-SIZE: 12px;
+    COLOR: #226EC6;
+}
+
+P
+{
+    FONT-SIZE: 9pt;
+    LINE-HEIGHT: 150%;
+    FONT-FAMILY: "宋体"
+}
+BODY
+{
+	FONT-SIZE: 12px;
+	COLOR: #000000;
+	FONT-FAMILY: 宋体;
+	BACKGROUND-COLOR: white;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: auto;
+	margin-left: auto;
+}
+
+
+.table_td td{
+	color:#000000;
+	text-align:center
+	border-collapse:collapse;
+	border:1px solid #747474;
+}
+.table_td tr{	
+	text-align: center;
+	BACKGROUND-COLOR: #E2E2E2;
+	height: 21;
+}
+.table_td th{
+	color:#fff;
+	font-weight:normal;
+	border-collapse:collapse;
+	text-align: center;
+	BACKGROUND-COLOR: #226EC6;
+	height: 21;
+}
+.table_td2{
+	color:#000000;
+	text-align:center
+	border-collapse:collapse;
+	border-left:1px solid #747474;
+	border-bottom:1px solid #747474;
+	border-right:1px solid #747474;
+	border-top:0px solid #747474;
+}
+
+.table_td2 td{
+	color:#000000;
+	text-align:center
+	border-collapse:collapse;
+	border:0px solid #747474;
+	
+}
+.table_td2 tr{	
+	text-align: center;
+	BACKGROUND-COLOR: #FFFFFF;
+	border:0px solid #747474;
+}
+

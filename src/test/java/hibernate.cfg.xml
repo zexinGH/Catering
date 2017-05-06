@@ -27,7 +27,8 @@
 
 		<mapping class="com.zeixin.restaurant.bean.Authority" />
 		<mapping class="com.zeixin.restaurant.bean.Function" />
-
+		<mapping class="com.zeixin.restaurant.bean.Role" />
+		<mapping class="com.zeixin.restaurant.bean.Employee" />
 	</session-factory>
 
 </hibernate-configuration>

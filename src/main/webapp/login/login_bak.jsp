@@ -30,12 +30,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body> 
-        <s:form action="checkUser" method="POST" >
-        		<s:textfield name="userName" label="用户名"/>
-        		<s:textfield name="password" label="密码"/>
-        		<s:select list="roleList" name="roleId" label="角色" listKey="roleId" listValue="roleName"/>
-        		<s:a href="addUser.action">注册用户</s:a>
-        		<s:submit value="登陆"/>
+        <s:form action="employeeAction!login">
+        		<input type="text" name="employee.empNo" label="用户名"/><br/>
+        		<input type="password" name="employee.empPassword" label="密码"/>
+        		<br/><s:submit value="登陆"/>
   
         </s:form> 
    

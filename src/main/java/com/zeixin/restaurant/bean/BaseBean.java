@@ -1,6 +1,5 @@
 package com.zeixin.restaurant.bean;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @MappedSuperclass
-public class BaseBean implements Serializable{
+public class BaseBean{
 
 	private Integer id;
 	
@@ -23,7 +22,7 @@ public class BaseBean implements Serializable{
 	
 	@Id
 	@Column(name="ID",columnDefinition="bigint")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}	

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=GBK"
-	pageEncoding="GBK"%>
+<%@ page language="java"  pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <head>
@@ -29,7 +28,7 @@
 
 <div id="left">
 	<div class="leftTitle">
-		���ܲ˵�
+		功能菜单
 	</div>
 	<div class="leftContent">
 		<div class="leftTree">

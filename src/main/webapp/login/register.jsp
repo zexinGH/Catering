@@ -30,18 +30,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    	<s:form action="saveUser" method="POST" >
-        		<s:textfield name="userName" label="用户名"/>
-        		<s:password name="password" label="密码"/>
+        <s:form action="employeeAction!addEmp" method="POST" >
+        		<s:textfield name="employee.empNo" label="员工号"/>
+        		<s:textfield name="employee.empName" label="姓名"/>
+        		<s:password name="employee.empPassword" label="密码"/>
         		<s:password name="checkPassword" label="确认密码"/>
-        		<s:radio list="#{'男':'男','女':'女'}" name="sex" label="性别"/>
-        		<s:textfield name="age" label="年龄"/>
-        		<s:textfield name="tel" label="联系方式"/>
-        		<s:select list="roleList" name="roleId" label="角色" listKey="roleId" listValue="roleName"/>
-        		<s:a href="login.action">返回登录界面</s:a>>
-        		<s:submit value="提交"/>
+        		<s:radio list="#{'男':'男','女':'女'}" name="employee.empSex" label="性别"/>
+        		<s:select list="roleList" name="role" label="角色" listKey="id" listValue="roleName"/>     		
+        		<s:textfield name="employee.empage" label="年龄"/>
+        		<s:textfield name="employee.empPhone" label="联系方式"/>
+        		<s:textfield name="employee.empAddress" label="住址"/>
+        		<s:property value="message"/><s:submit value="提交"/>
         		
         		
-        </s:form> 
+        </s:form>
   </body>
 </html>

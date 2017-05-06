@@ -17,9 +17,8 @@
 	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="100%" height="100%" align="center">
-				<!--   <iframe name="workWindow" SCROLLING="NO" BORDER="0" FRAMEBORDER="NO" HEIGHT="100%" width="100%" src="/fun/addFun.jsp"></iframe>
-				 -->
-				 ปถำญนโมูม๚บþฒอฬü
+				 ปถำญนโมูม๚บþฒอฬü<br/>
+				<s:property value="message"/>
 			</td>
 		</tr>
 	</table>

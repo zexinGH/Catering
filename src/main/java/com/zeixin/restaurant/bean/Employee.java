@@ -13,13 +13,13 @@ import javax.persistence.Table;
 public class Employee extends BaseBean {
 	
 	private String empNo;
-	private String empPasswrod;
+	private String empPassword;
 	private String empName;
 	private String empAge;
 	private String empSex;
 	private String empPhone;
 	private String empAddress;
-	private Core empCore;
+	private Role empRole;
 	
 	@Column(name="EMP_NO")
 	public String getEmpNo() {
@@ -29,17 +29,18 @@ public class Employee extends BaseBean {
 		this.empNo = empNo;
 	}
 	@Column(name="EMP_PASSWORD")
-	public String getEmpPasswrod() {
-		return empPasswrod;
+	public String getEmpPassword() {
+		return empPassword;
 	}
-	public void setEmpPasswrod(String empPasswrod) {
-		this.empPasswrod = empPasswrod;
+	public void setEmpPassword(String empPassword) {
+		this.empPassword = empPassword;
 	}
 
 	@Column(name="EMP_NAME")
 	public String getEmpName() {
 		return empName;
 	}
+	
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
@@ -76,13 +77,14 @@ public class Employee extends BaseBean {
 		this.empAddress = empAddress;
 	}
 
-	@JoinColumn(name="CORE_ID")
+
+	@JoinColumn(name="ROLE_ID")
 	@ManyToOne(cascade={CascadeType.PERSIST},fetch = FetchType.EAGER)
-	public Core getEmpCore() {
-		return empCore;
+	public Role getEmpRole() {
+		return empRole;
 	}
-	public void setEmpCore(Core empCore) {
-		this.empCore = empCore;
+	public void setEmpRole(Role empRole) {
+		this.empRole = empRole;
 	}
 
 	

@@ -32,6 +32,6 @@ public class MD5Util {
 	public static void main(String[] args) {
 		// MD5_Test aa = new MD5_Test();
 
-		System.out.print(MD5Util.calc(""));
+		System.out.print(MD5Util.calc("123"));
 	}
 }

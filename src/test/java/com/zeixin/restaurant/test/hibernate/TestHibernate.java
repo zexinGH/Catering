@@ -1,19 +1,20 @@
 package com.zeixin.restaurant.test.hibernate;
 
-import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.zeixin.restaurant.bean.Employee;
+import com.zeixin.restaurant.bean.Authority;
+import com.zeixin.restaurant.service.RoleService;
 import com.zeixin.restaurant.service.EmpService;
-import com.zeixin.restaurant.util.MD5Util;
 
 public class TestHibernate {
 
 	private EmpService empService;
+	private RoleService roleService;
 	
 	 /**
      * 这个before方法在所有的测试方法之前执行，并且只执行一次
@@ -25,21 +26,18 @@ public class TestHibernate {
 		ApplicationContext context = new 
 				ClassPathXmlApplicationContext("spring.xml");
 		empService = (EmpService) context.getBean("empService");
+		roleService = (RoleService) context.getBean("roleService");
 		
 	}
 	
 	@Test
 	public void testSaveMethod(){
-		Employee employee = new Employee();
-		employee.setEmpNo("10001");
-		employee.setEmpPasswrod(MD5Util.calc("123"));
-		employee.setEmpAddress("广州天河");
-		employee.setEmpAge("26");
-		employee.setEmpName("陈诚");
-		employee.setEmpPhone("13967344708");
-		employee.setEmpSex("男");
-		employee.setDateCreated(new Date());
-		employee.setDateModified(new Date());
-		empService.save(employee);
+		List<Authority> authorities = HibernateUtils.getSessionFactory()
+				.openSession().createQuery(" select r.authorities from Role r "
+						+ "where r.id = :id")
+				.setParameter("id", 1).list();	
+		for(Authority a:authorities){
+			System.out.println(a.getAuthorityName());
+		}
 	}
 }

@@ -1,157 +1,108 @@
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-<%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ page language="java" contentType="text/html; charset=GBK"
-	pageEncoding="GBK"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+
 <head>
-	<meta name="decorator" content="login">
-	<title>Login</title>
+<meta name="decorator" content="login">
+<title><s:property value="title"/></title>
 
 
-	<link rel="stylesheet" type="text/css" href="styles/style.css"/>
-	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css"/>
-	<script type="text/javascript">
-		function document.onkeydown() {
-	     	if(event.keyCode==13) {
-	     	
-               document.getElementById("login").click(); 
-               return false;     
-        	}
-	    }
-	     function jiaoyan(form){
-		        
-		       if(form.userName.value.trim() == ""){
-		           alert("Äú±ØĞëÊäÈëĞÕÃû");
-		           return false;
-		       }
-		   
-		       if(form.password.value.trim() == ""){
-		           alert("Äú±ØĞëÊäÈëÃÜÂë");
-		           return false;
-		       }
-		       return true;
-		   }
-	    function check() {
-	    	var username = document.all("userName").value;
-	    	var password = document.all("password").value;
-	    	var ret = false;
-	   
-	    	if(isBlank(username)) {
-	    	    alert('abÓÃ»§Ãû²»ÄÜÎª¿Õcd');
-	    		document.getElementById("infoLogin").style.display = "block";
-	    		document.getElementById("hint").innerHTML = "ÓÃ»§Ãû²»ÄÜÎª¿Õ"
-	    		document.all('userName').focus();
-	    		alert('abÃÜÂëÄÜÎª¿ÕÎª¿Õcd');
-	    		return false;
-	    	}
-	    	 alert('abÓÃ»§Ãûcd');
-	    	
-	    	if(isBlank(password)) {
-	    	 alert('abÃÜÂë²»ÄÜÎª¿ÕÎª¿Õcd');
-	    		document.getElementById("infoLogin").style.display = "block";
-	    		document.getElementById("hint").innerHTML = "ÃÜÂë²»ÄÜÎª¿Õ"
-	    		document.all('password').focus();
-	    		return false;
-	    	}
-	    
-	    	if(ret) {
-	    		document.getElementById("login").disabled = true;
-	    		document.getElementById("reset").disabled = true;
-	    		return doCommand(this, 9, '', true);
-	    	}
-	    	return false;
-	    }
-	  
-	    
-	</script>
+<link rel="stylesheet" type="text/css" href="styles/style.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript">
+	document.onkeydown = function() {
+		if (event.keyCode == 13) {
+			document.getElementById("login").click();
+			return false;
+		}
+	};
 </head>
-
-<body id="bodyLogin" onload="document.all('userName').focus();">
-<form method="post" id="loginForm" name="loginForm" action="checkUser" onsubmit="return check()">
-<div class="logoLogin"></div>
-	<div id="loginContainer">
-		<center>
-			<div id="loginContent">
-				<div id="loginWrapper">
-					<div class="borderLeft"></div>
-					<div class="borderRight"></div>
-					<div class="borderTop">
-						<div class="topL1">
-							<div class="topL2">
-								<div class="topL3"></div>
-							</div>
-						</div>
-					</div>
-					<div class="borderBottom">
-						<div class="bottomL1">
-							<div class="bottomL2">
-								<div class="bottomL3"></div>
-							</div>
-						</div>
-					</div>
-
-					<div id="centerCon">
-						<!--LogoÇø¿ªÊ¼-->
-						<div id="loginLogo"><lable><font color="blue" size="8" face="¿¬Ìå" >Áúºş²ÍÒû</font> </lable></div>
-						<!--LogoÇø½áÊø-->
-
-						<!--µÇÂ¼ĞÅÏ¢ÊäÈë¿ªÊ¼-->
-							<div id="conForm">
-								<div class="userPass">
-									<label class="fB">
-										ÓÃ»§Ãû£º
-									</label>
-									<input name="userName" type="text" class="midinput" maxlength="20" >
+</script>
+<body id="bodyLogin">
+	<form method="post" id="loginForm" name="loginForm" 
+		action="employeeAction!login.action">
+		<div class="logoLogin"></div>
+		<div id="loginContainer">
+			<center>
+				<div id="loginContent">
+					<div id="loginWrapper">
+						<div class="borderLeft"></div>
+						<div class="borderRight"></div>
+						<div class="borderTop">
+							<div class="topL1">
+								<div class="topL2">
+									<div class="topL3"></div>
 								</div>
-								<div class="password" id="center" >
+							</div>
+						</div>
+						<div class="borderBottom">
+							<div class="bottomL1">
+								<div class="bottomL2">
+									<div class="bottomL3"></div>
+								</div>
+							</div>
+						</div>
+
+						<div id="centerCon">
+							<!--LogoåŒºå¼€å§‹-->
+							<div id="loginLogo">
+								<lable>
+								<font color="blue" size="8" face="æ¥·ä½“">é¾™æ¹–é¤é¥®</font> </lable>
+							</div>
+							<!--LogoåŒºç»“æŸ-->
+
+							<!--ç™»å½•ä¿¡æ¯è¾“å…¥å¼€å§‹-->
+							<div id="conForm">
+								<div class="userName">
+									<label class="fB"> å‘˜å·¥å·ï¼š </label> 
+									<input name="employee.empNo"
+										type="text" class="midinput" maxlength="20">
+								</div>
+								<%--<div class="password" id="center" >
 									<label class="fB">
-										½ÇÉ«£º
+										è§’è‰²ï¼š
 									</label>
 									<select name="roleId" class="selectmiddle" >
 									    <s:iterator value="roleList">
 										<option value="<s:property value="roleId"/>" selected="selected"><s:property value="roleName"/>
 										</s:iterator>
 									</select>
-								</div>
+								</div> --%>
 								<div class="userPass">
-									<label id="passwordPrompt" class="fB">
-										ÃÜÂë£º
-									</label>
-									<input name="password" type="password" class="midinput" maxlength="20">
+									<label id="passwordPrompt" class="fB"> å¯†ç ï¼š </label> 
+									<input name="employee.empPassword" type="password" 
+									class="midinput" maxlength="20">
 								</div>
 								<div class="login">
-									<input name="login" id="login" value="µÇÂ¼" class="loginBtn" type="submit"
-										  onmouseover="this.style.backgroundPosition='left -24px'"
+									<input name="login" id="login" value="ç™»å½•" class="loginBtn"
+										type="submit"
+										onmouseover="this.style.backgroundPosition='left -24px'"
 										onmouseout="this.style.backgroundPosition='left 0px'">
-									<input name="reset" id="reset" value="ÖØÖÃ" class="loginBtn"
-										type="reset" onmouseover="this.style.backgroundPosition='left -24px'"
+									<input name="reset" id="reset" value="é‡ç½®" class="loginBtn"
+										type="reset"
+										onmouseover="this.style.backgroundPosition='left -24px'"
 										onmouseout="this.style.backgroundPosition='left 0px'">
 								</div>
 							</div>
-							<!--µÇÂ¼ĞÅÏ¢ÊäÈë½áÊø-->
-								<div id="infoLogin" style="display: none;">
-							<div class="infoBorder">
-								<span></span>
-								<font id="hint"></font>
+							<!--ç™»å½•ä¿¡æ¯è¾“å…¥ç»“æŸ-->
+							<div id="infoLogin" style="display: none;">
+								<div class="infoBorder">
+									<span></span> <font id="hint"></font>
+								</div>
 							</div>
+							<!--ç™»é™†å¤±è´¥æç¤ºä¿¡æ¯ç»“æŸ-->
+							<div id="j_role_tr" style="display:none;">
+								<select id="j_role" name="j_role" class="selectmiddle">
+									<option value="A1" />
+								</select>
+							</div>
+
+
 						</div>
-						<!--µÇÂ½Ê§°ÜÌáÊ¾ĞÅÏ¢½áÊø-->
-						<div id="j_role_tr" style="display:none;">
-							<select id="j_role" name="j_role" class="selectmiddle">
-								<option value="A1" />
-							</select>
-						</div>
-						
-					
 					</div>
 				</div>
-			</div>
-		</center>
-		<!-- 
-		<div class="loginBottom">
-			<span id="copyright"><fmt:message key="ac.system.login.bank" /></span>
+			</center>
 		</div>
-		 -->
-	</div>
 	</form>
 </body>

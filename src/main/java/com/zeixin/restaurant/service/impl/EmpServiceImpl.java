@@ -1,7 +1,5 @@
 package com.zeixin.restaurant.service.impl;
 
-import java.io.Serializable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +19,19 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public Serializable save(Employee employee) {	
-		return employeeDao.save(employee);
+	public void addEmp(Employee employee) {	
+		employeeDao.addEmp(employee);
+	}
+
+	@Override
+	public Employee getEmployee(String empNO, String empPassword) {
+		
+		return employeeDao.getEmployee(empNO, empPassword);
+	}
+
+	@Override
+	public boolean getEmployeeByEmpNo(String empNo) {
+		return employeeDao.getEmployeeByEmpNo(empNo);
 	}
 
 }

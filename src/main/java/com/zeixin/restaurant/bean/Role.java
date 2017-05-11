@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class Role extends BaseBean{
 	
 	private String roleName;
+	private Integer roleLevel;
 	private Set<Employee> employees = new HashSet<Employee>();
 	private Set<Authority> authorities = new HashSet<Authority>();
 	
@@ -47,6 +48,13 @@ public class Role extends BaseBean{
 	}
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+	@Column(name="ROLE_LEVEL")
+	public Integer getRoleLevel() {
+		return roleLevel;
+	}
+	public void setRoleLevel(Integer roleLevel) {
+		this.roleLevel = roleLevel;
 	}
 	
 	

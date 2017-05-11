@@ -17,7 +17,7 @@ public class Authority extends BaseBean{
 	
 	private String authorityName;	
 	private List<Function> functions =new ArrayList<Function>();
-	
+	private String menuIcon;
 	
 	@OneToMany(fetch=FetchType.EAGER,mappedBy="authority",cascade=CascadeType.ALL)
 	public List<Function> getFunctions() {
@@ -33,6 +33,14 @@ public class Authority extends BaseBean{
 	}
 	public void setAuthorityName(String authorityName) {
 		this.authorityName = authorityName;
+	}
+	
+	@Column(name="MENU_ICON")
+	public String getMenuIcon() {
+		return menuIcon;
+	}
+	public void setMenuIcon(String menuIcon) {
+		this.menuIcon = menuIcon;
 	}
 	
 	 

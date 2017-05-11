@@ -1,15 +1,18 @@
 package com.zeixin.restaurant.service;
 
+import java.util.List;
 
 import com.zeixin.restaurant.bean.Employee;
 
-public interface EmpService {
+public interface EmpService extends BaseService<Employee>{
 
 	void test();
 	
-	public void addEmp(Employee employee);
+	/*public void addEmp(Employee employee);*/
 
-	public Employee getEmployee(String empNO, String empPassword);
+	public Employee getEmployee(Object empNO, Object empPassword);
 	
-	public boolean getEmployeeByEmpNo(String empNo);
+	public Employee getEmployeeByEmpNo(Object empNo);
+	
+	public List<Employee> getAllEmp();
 }

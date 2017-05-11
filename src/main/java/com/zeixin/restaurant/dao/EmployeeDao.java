@@ -1,18 +1,14 @@
 package com.zeixin.restaurant.dao;
 
-
 import java.util.List;
 
 import com.zeixin.restaurant.bean.Employee;
 
-public interface EmployeeDao {
+public interface EmployeeDao extends BaseDao<Employee>{
+		
+	public Employee getEmployee(Object empNO, Object empPassword);
 	
-	public void addEmp(Employee employee);
-	
-	public Employee getEmployee(String empNO, String empPassword);
-	
-	public boolean getEmployeeByEmpNo(String empNo);
+	public Employee getEmployeeByEmpNo(Object empNo);
 	
 	public List<Employee> getAllEmp();
-	
 }

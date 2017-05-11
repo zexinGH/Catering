@@ -22,7 +22,7 @@ public class RoleAction {
 		role.setRoleName("服务生");
 		role.setDateCreated(new Date());
 		role.setDateModified(new Date());
-		roleService.addRole(role);
+		roleService.create(role);;
 	}
 	
 }

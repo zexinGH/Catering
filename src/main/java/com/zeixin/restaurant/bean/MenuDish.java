@@ -1,15 +1,10 @@
 package com.zeixin.restaurant.bean;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,7 +16,6 @@ public class MenuDish extends BaseBean{
 	private float dishPrice;
 	private String dishDescription;
 	private MenuCategory menuCategory;
-	private Set<Materials> materials =new HashSet<Materials>();
 	
 	@Column(name="DISH_DESCRIPTION")	
 	public String getDishDescription() {
@@ -56,19 +50,6 @@ public class MenuDish extends BaseBean{
 	public void setMenuCategory(MenuCategory menuCategory) {
 		this.menuCategory = menuCategory;
 	}
-	
-	@ManyToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
-	@JoinTable(name="DISHS_MATERIALS",
-			joinColumns=@JoinColumn(name="DISHS_ID",referencedColumnName="id"),
-			inverseJoinColumns=@JoinColumn(name="MATERIALS_ID",referencedColumnName="id"))
-	public Set<Materials> getMaterials() {
-		return materials;
-	}
-	public void setMaterials(Set<Materials> materials) {
-		this.materials = materials;
-	}
-	
-	
-	
+		
 	
 }

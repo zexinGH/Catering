@@ -13,19 +13,19 @@ import com.zeixin.restaurant.util.MD5Util;
 
 @Transactional
 @Repository("employeeDao")
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Override
+/*	@Override
 	public void addEmp(Employee employee) {
 		sessionFactory.getCurrentSession().save(employee);
-	}
+	}*/
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public Employee getEmployee(String empNo, String empPassword) {
+	public Employee getEmployee(Object empNo, Object empPassword) {
 		@SuppressWarnings("unchecked")	
 		List<Employee> employees = sessionFactory
 				.getCurrentSession()
@@ -41,16 +41,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public boolean getEmployeeByEmpNo(String empNo) {
+	public Employee getEmployeeByEmpNo(Object empNo) {
 		@SuppressWarnings({ "unchecked", "deprecation" })	
 		List<Employee> employees = sessionFactory
 				.getCurrentSession().createQuery(
 				" select e from Employee e where e.empNo = :empNo ")
 				.setParameter("empNo", empNo).list();
 		if (employees.size() > 0) {
-			return false;
+			return employees.get(0);
 		}
-		return true;
+		return null;
 	}
 
 	@Override

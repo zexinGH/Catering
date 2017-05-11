@@ -1,7 +1,7 @@
 package com.zeixin.restaurant.bean;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,9 +19,9 @@ public class OrderForm extends BaseBean{
 	private DiningTable tableNum;
 	private String orderNumber;
 	private Employee employeeName;
-	private Set<OrderItem> orderItems =new HashSet<OrderItem>();
-	private float orderPayment;
-//	0:未支付  1：已支付
+	private List<MenuDish> menuDishs = new ArrayList<MenuDish>();
+	private Double orderPayment;
+	//	0:未支付  1：已支付
 	private Integer status;
 	
 	@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
@@ -50,22 +50,22 @@ public class OrderForm extends BaseBean{
 		this.employeeName = employeeName;
 	}
 	
-	@OneToMany(mappedBy="orderForm")
-	public Set<OrderItem> getOrderItems() {
-		return orderItems;
+	@OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
+	@JoinColumn(name="MENUDISH_ID")
+	public List<MenuDish> getMenuDishs() {
+		return menuDishs;
 	}
-	public void setOrderItems(Set<OrderItem> orderItems) {
-		this.orderItems = orderItems;
+	public void setMenuDishs(List<MenuDish> menuDishs) {
+		this.menuDishs = menuDishs;
 	}
 	
-	@Column(name="ORDER_PAYMENT")
-	public float getOrderPayment() {
+	@Column(name="ORDER_PAYMENT")	
+	public void setOrderPayment(Double orderPayment) {
+		this.orderPayment = orderPayment;
+	}	
+	public Double getOrderPayment() {
 		return orderPayment;
 	}
-	public void setOrderPayment(float orderPayment) {
-		this.orderPayment = orderPayment;
-	}
-	
 	@Column(name="ORDER_STATUS")
 	public Integer getStatus() {
 		return status;

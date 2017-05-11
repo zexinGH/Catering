@@ -10,7 +10,6 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zeixin.restaurant.bean.Authority;
 import com.zeixin.restaurant.bean.Employee;
 import com.zeixin.restaurant.bean.Role;
 import com.zeixin.restaurant.service.EmpService;
@@ -21,7 +20,9 @@ import com.zeixin.restaurant.util.MD5Util;
 @ParentPackage("basePackage")
 //使用convention-plugin插件提供的@Action注解将一个普通java类标注为一个可以处理用户请求的Action，Action的名字为employeeAction
 @Action(value="employeeAction", 
-results={@Result(name="addEmp",location="/login/register.jsp")})
+results={@Result(name="addEmp",location="/employee/addEmp.jsp"),
+		 @Result(name="viewEmp",location="/employee/viewEmp.jsp"),
+		 @Result(name="modifyEmp",location="/employee/modifyEmp.jsp")})
 @Namespace("/")//使用convention-plugin插件提供的@Namespace注解为这个Action指定一个命名空间
 public class EmployeeAction extends BaseAction{  
     /**
@@ -33,80 +34,84 @@ public class EmployeeAction extends BaseAction{
     private RoleService roleService;
     private Employee employee;
     private String checkPassword;
-    private List<Authority> authorities = new ArrayList<Authority>();
     private List<Role> roleList = new ArrayList<Role>();
+    private List<Employee> employeeList = new ArrayList<Employee>();
+    private Integer roleId;
+    private Integer empId;
     
-    public String initLogin(){
-    	setTitle("员工登录");
-    	return LOGIN;
-    }
-    
-    public String login(){
-    	if(empService.getEmployeeByEmpNo(employee.getEmpNo())){
-    		setMessage("该员工号不存在");
-    		return LOGIN;
-    	}
-    	employee = empService.getEmployee(
-    			employee.getEmpNo().trim(),employee.getEmpPassword().trim());
-    	if(employee == null){
-    		setMessage("用户名或密码错误");
-			return LOGIN;
-    	}else{
-			try {
-				authorities = roleService.getAuthorityByRoleId(employee.getEmpRole().getId());
-				session.put("employee", employee);
-				return SUCCESS;
-			} catch (Exception e) {
-				setMessage(e.getMessage());
-				return ERROR;
-			}			
-		}
-    }
-    
-    public String logout(){
-    	session.put("employee", null);		
-		return LOGIN;
-    }
     
     public String initAddEmp(){
     	setTitle("注册新员工");
-    	roleList = roleService.getRoleList();
+    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	roleList = roleService.getRoleList(logiEemployee);
     	return "addEmp";
     }
        
     public String addEmp(){
-    	if(!empService.getEmployeeByEmpNo(employee.getEmpNo())){
+    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	roleList = roleService.getRoleList(logiEemployee);
+    	if(empService.getEmployeeByEmpNo(employee.getEmpNo()) != null){
     		setMessage("该员工号已被注册");
     		return "addEmp";
     	}
-    	try {
-			employee.setDateCreated(new Date());
-			employee.setDateModified(new Date());
-			empService.addEmp(employee);
-			setMessage("注册员工成功！");
-			return SUCCESS;
-		} catch (Exception e) {
-			setMessage("注册失败："+e.getMessage());
-		}
-    	return ERROR;
-    }
-    
-    public String mainWorkSpace(){
-    	return "mainWorkSpace";
-    }
-    
-    public void addUser(){
-    	Employee employee = new Employee();
-    	employee.setEmpNo("10005");
-		employee.setEmpPassword(MD5Util.calc("321"));
-		employee.setEmpAddress("广州天河");
-		employee.setEmpAge("24");
-		employee.setEmpName("孙兴");
-		employee.setEmpPhone("13389549843");
-		employee.setEmpSex("男");
 		employee.setDateCreated(new Date());
 		employee.setDateModified(new Date());
-		empService.addEmp(employee);
+		employee.setEmpRole(roleService.getRoleById(roleId));
+		employee.setEmpPassword(MD5Util.calc(employee.getEmpPassword()));
+		if(empService.save(employee)){
+			setMessage("注册员工成功！");
+			return SUCCESS;
+		}else{
+			setMessage("注册失败!");
+			return ERROR;
+		}
+    }
+    
+    public String initModifyEmp(){
+    	setTitle("修改员工信息");
+    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	employee = empService.find(Employee.class, empId);  	
+    	roleList = roleService.getRoleList(logiEemployee);
+    	session.put("empId", empId);
+    	return "modifyEmp";
+    }
+    
+    public String modifyEmp(){
+    	setTitle("修改员工信息");
+    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	roleList = roleService.getRoleList(logiEemployee);
+    	
+    	Employee modifyEmployee = empService.find(Employee.class, 
+    			(Integer) session.get("empId"));
+    	modifyEmployee.setEmpName(employee.getEmpName());
+    	modifyEmployee.setEmpAddress(employee.getEmpAddress());
+    	modifyEmployee.setEmpPhone(employee.getEmpPhone());
+    	modifyEmployee.setEmpSex(employee.getEmpSex());
+    	modifyEmployee.setEmpAge(employee.getEmpAge());
+    	modifyEmployee.setDateModified(new Date());
+    	modifyEmployee.setEmpRole(roleService.getRoleById(roleId));
+    	employee = modifyEmployee;
+		if(empService.update(modifyEmployee)){
+			setMessage("员工信息修改成功！");
+		}else{
+			setMessage("员工信息修改失败");
+		}
+		return "modifyEmp";
+    }
+    
+    public String deleteEmp(){
+    	employee = empService.find(Employee.class, empId);
+    	if(empService.delete(employee)){
+    		return this.viewEmp();
+    	}else{
+    		setMessage("删除员工时出现错误！");
+    		return "error";
+    	}
+    }
+    
+    public String viewEmp(){
+    	employeeList = empService.getAllEmp();
+    	return "viewEmp";
     }
 
 	public EmpService getEmpService() {
@@ -131,16 +136,7 @@ public class EmployeeAction extends BaseAction{
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-	}
-
-	public List<Authority> getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(List<Authority> authorities) {
-		this.authorities = authorities;
-	}
-	
+	}	
 	
 	public String getCheckPassword() {
 		return checkPassword;
@@ -157,5 +153,30 @@ public class EmployeeAction extends BaseAction{
 	public void setRoleList(List<Role> roleList) {
 		this.roleList = roleList;
 	}
-	 
+	
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
+
+	public List<Employee> getEmployeeList() {
+		return employeeList;
+	}
+
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
+	}
+	
 }

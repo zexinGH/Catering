@@ -11,19 +11,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name="order_item")
 public class OrderItem extends BaseBean{
-	private MenuDish menuDish;
+	/*private MenuDish menuDish;*/
 	private Integer dishAmount;
 	private float totalPrice;
-	private OrderForm orderForm;
+/*	private OrderForm orderForm;*/
 	
-	@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
+	/*@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
 	@JoinColumn(name="DISH_ID")
 	public MenuDish getMenuDish() {
 		return menuDish;
 	}
 	public void setMenuDish(MenuDish menuDish) {
 		this.menuDish = menuDish;
-	}
+	}*/
 	
 	@Column(name="DISH_AMOUNT")
 	public Integer getDishAmount() {
@@ -41,14 +41,14 @@ public class OrderItem extends BaseBean{
 		this.totalPrice = totalPrice;
 	}
 	
-	@JoinColumn(name="ORDER_FORM_ID")
+	/*@JoinColumn(name="ORDER_FORM_ID")
 	@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
 	public OrderForm getOrderForm() {
 		return orderForm;
 	}
 	public void setOrderForm(OrderForm orderForm) {
 		this.orderForm = orderForm;
-	}
+	}*/
 	
 	
 	

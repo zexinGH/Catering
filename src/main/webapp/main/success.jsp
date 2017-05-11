@@ -9,14 +9,14 @@
 	<div class="page-breadcrumbs">
 		<ul class="breadcrumb">
 			<li><i class="fa fa-home"></i> <a href="#">系统主界面</a></li>
-			<li class="active">Dashboard</li>
+			<li class="active">操作成功</li>
 		</ul>
 	</div>
 	<!-- /Page Breadcrumb -->
 	<!-- Page Header -->
 	<div class="page-header position-relative">
 		<div class="header-title">
-			<h1>Dashboard</h1>
+			<h1>操作成功</h1>
 		</div>
 		<!--Header Buttons-->
 		<div class="header-buttons">

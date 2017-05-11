@@ -5,29 +5,39 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dining_table")
-public class DiningTable extends BaseBean {
-
-	private Integer tableType;
+@Table(name = "desk_info")
+public class Desk extends BaseBean {
+	private Integer deskNum;
+	private String deskType;
 	private String position;
 	//0:空闲 1：预订 2:就餐	
 	private Integer status;
 	private Integer capacity;
 	
-	@Column(name="TABLE_TYPE")
-	public Integer getTableType() {
-		return tableType;
+	
+	@Column(name="DESK_NUM")
+	public Integer getDeskNum() {
+		return deskNum;
+	}
+
+	public void setDeskNum(Integer deskNum) {
+		this.deskNum = deskNum;
 	}
 	
-	public void setTableType(Integer tableType) {
-		this.tableType = tableType;
+	@Column(name="DESK_TYPE")
+	public String getDeskType() {
+		return deskType;
 	}
-	
+
+	public void setDeskType(String deskType) {
+		this.deskType = deskType;
+	}
+
 	@Column(name="TABLE_POSITION")
 	public String getPosition() {
 		return position;
-	}
-	
+	}	
+
 	public void setPosition(String position) {
 		this.position = position;
 	}

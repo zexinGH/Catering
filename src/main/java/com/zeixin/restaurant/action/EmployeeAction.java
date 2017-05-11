@@ -25,9 +25,6 @@ results={@Result(name="addEmp",location="/employee/addEmp.jsp"),
 		 @Result(name="modifyEmp",location="/employee/modifyEmp.jsp")})
 @Namespace("/")//使用convention-plugin插件提供的@Namespace注解为这个Action指定一个命名空间
 public class EmployeeAction extends BaseAction{  
-    /**
-     * 注入userService
-     */
     @Autowired
     private EmpService empService;
     @Autowired
@@ -63,7 +60,7 @@ public class EmployeeAction extends BaseAction{
 			return SUCCESS;
 		}else{
 			setMessage("注册失败!");
-			return ERROR;
+			return "failure";
 		}
     }
     
@@ -101,6 +98,15 @@ public class EmployeeAction extends BaseAction{
     
     public String deleteEmp(){
     	employee = empService.find(Employee.class, empId);
+    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	if(employee.getEmpRole().getRoleLevel() > logiEemployee.getEmpRole().getRoleLevel()){
+    		setMessage("你无权限进行此操作！");
+    		return "failure";
+    	}
+    	if(employee.getId().equals(logiEemployee.getId())){
+    		setMessage("不能删除你自己！");
+    		return "failure";
+    	}
     	if(empService.delete(employee)){
     		return this.viewEmp();
     	}else{
@@ -110,6 +116,7 @@ public class EmployeeAction extends BaseAction{
     }
     
     public String viewEmp(){
+    	setTitle("人事管理");
     	employeeList = empService.getAllEmp();
     	return "viewEmp";
     }

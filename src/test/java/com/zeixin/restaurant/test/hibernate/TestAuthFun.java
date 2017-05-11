@@ -22,11 +22,11 @@ public class TestAuthFun {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Query query = session.createQuery(
-					" from Authority a where a.authorityName = '员工信息管理'");
+					" from Authority a where a.authorityName = '桌台信息管理'");
 			List<Authority> list = query.list();
 			for(Authority authority : list){
 				Function function = new Function();
-				function.setFunName("人事管理");
+				function.setFunName("桌台列表");
 				function.setAuthority(authority);
 				function.setDateCreated(new Date());
 				function.setDateModified(new Date());

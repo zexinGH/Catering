@@ -8,16 +8,16 @@
 	<!-- Page Breadcrumb -->
 	<div class="page-breadcrumbs">
 		<ul class="breadcrumb">
-			<li><i class="fa fa-home"></i> <a>员工信息管理</a></li>
-			<li class="active">人事管理</li>
-			<li class="active">修改员工信息</li>
+			<li><i class="fa fa-home"></i> <a href="#">桌台信息管理</a></li>
+			<li class="active">桌台管理</li>
+			<li class="active">编辑桌台信息</li>
 		</ul>
 	</div>
 	<!-- /Page Breadcrumb -->
 	<!-- Page Header -->
 	<div class="page-header position-relative">
 		<div class="header-title">
-			<h1>修改员工信息</h1>
+			<h1>编辑桌台信息</h1>
 		</div>
 		<!--Header Buttons-->
 		<div class="header-buttons">
@@ -36,8 +36,8 @@
 		<div class="row">			
 			<div class="col-lg-6 col-sm-6 col-xs-12">
 				<div class="widget">
-					<div class="widget-header bordered-bottom bordered-blue">
-						<span class="col-sm-6 widget-caption">请编辑员工信息</span>
+					<div class="widget-header bordered-bottom bordered-warning">
+						<span class="col-sm-6 widget-caption">编辑桌台信息</span>
 						<span class="col-sm-6 widget-caption text-success">
 							<s:property value="message"/>
 						</span>
@@ -45,84 +45,51 @@
 					<div class="widget-body">
 						<div id="horizontal-form">
 							<form class="form-horizontal" role="form" method="post" 
-								action="employeeAction!modifyEmp.action">
+								action="deskAction!modifyDesk.action">								
 								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">目前职位</label>
-									<div class="col-sm-10">
-										<span class="input-icon icon-right">
-											<input type="text" class="form-control" 
-											value="<s:property value="employee.empRole.roleName"/>">
-											
-										</span>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">调整职位</label>
-									<div class="col-sm-10">
-										<span class="input-icon icon-right">
-											<s:select list="roleList" name="roleId" 
-											listKey="id" id="roleInput"
-											listValue="roleName" class="form-control" /> 
-										</span>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">姓名</label>
+									<label class="col-sm-2 control-label no-padding-right">桌台编号</label>
 									<div class="col-sm-10">
 										<span class="input-icon icon-right"> 
 											<input type="text" class="form-control" 
-											name="employee.empName"
-											value="<s:property value="employee.empName"/>"> 
-											<i class="fa fa-user"></i>
+											name="desk.deskNum"
+											value="<s:property value="desk.deskNum"/>"> 											
 										</span>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">住址</label>
+									<label class="col-sm-2 control-label no-padding-right">桌台类型</label>
 									<div class="col-sm-10">
 										<span class="input-icon icon-right">
-											<input type="text" class="form-control"
-											name="employee.empAddress"
-											value="<s:property value="employee.empAddress"/>"/>
-											<i class="glyphicon glyphicon-home"></i>
+											<s:select list="#{'':'请选择分类','包间':'包间','大厅':'大厅'}" 
+											name="desk.deskType" 
+									    	id="typeInput" class="form-control" />
 										</span>
 									</div>
 								</div>
 								
 								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">联系方式</label>
+									<label class="col-sm-2 control-label no-padding-right">具体位置</label>
 									<div class="col-sm-10">
 										<span class="input-icon icon-right"> 
 											<input type="text" class="form-control"
-											name="employee.empPhone"
-											value="<s:property value="employee.empPhone"/>"/> 
-											<i class="glyphicon glyphicon-phone"></i>
+											name="desk.position"
+											value="<s:property value="desk.position"/>"/> 						
 										</span>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">年龄</label>
+									<label class="col-sm-2 control-label no-padding-right">容纳人数</label>
 									<div class="col-sm-10">
 										<span class="input-icon icon-right"> 
 											<input type="text" class="form-control" 
-											name="employee.empAge"
-											value="<s:property value="employee.empAge"/>" />
+											name="desk.capacity"
+											value="<s:property value="desk.capacity"/>"/>
 										</span>	
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right">性别</label>
-									<div class="col-sm-10">
-										<span class="input-icon icon-right"> 
-										<s:select list="#{'':'请选择性别','男':'男','女':'女'}" 
-											name="employee.empSex"
-											id="sexInput" class="form-control" />
-										</span>
-									</div>
-								</div>
+								</div>								
 								<div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                    	<button type="submit" class="btn btn-info" 
+                                    	<button type="submit" class="btn btn-warning" 
                                     	onclick="return confirm('确定要修改吗？')">提交</button>
                                     </div>
                                 </div>                              

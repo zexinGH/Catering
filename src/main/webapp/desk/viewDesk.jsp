@@ -8,15 +8,15 @@
 	<!-- Page Breadcrumb -->
 	<div class="page-breadcrumbs">
 		<ul class="breadcrumb">
-			<li><i class="fa fa-home"></i> <a href="#">员工信息管理</a></li>
-			<li class="active">人事管理</li>
+			<li><i class="fa fa-home"></i> <a href="#">桌台信息管理</a></li>
+			<li class="active">桌台管理</li>
 		</ul>
 	</div>
 	<!-- /Page Breadcrumb -->
 	<!-- Page Header -->
 	<div class="page-header position-relative">
 		<div class="header-title">
-			<h1>人事管理</h1>
+			<h1>桌台管理</h1>
 		</div>
 		<!--Header Buttons-->
 		<div class="header-buttons">
@@ -35,8 +35,8 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-12">
 				<div class="widget">
-					<div class="widget-header bg-info">
-						<span class="widget-caption">员工列表</span>
+					<div class="widget-header bg-warning">
+						<span class="widget-caption">桌台列表</span>
 						<div class="widget-buttons">
 							<a href="#" data-toggle="maximize"> <i class="fa fa-expand"></i>
 							</a> <a href="#" data-toggle="collapse"> <i class="fa fa-minus"></i>
@@ -47,34 +47,46 @@
 					<div class="widget-body">
 						<div class="table-toolbar">
 							<a id="editabledatatable_new"
-								href="employeeAction!initAddEmp.action" class="btn btn-default">
-								注册新员工 </a>
+								href="deskAction!initAddDesk.action" class="btn btn-default">
+								添加桌台</a>
 
 						</div>
 						<table class="table table-striped table-hover table-bordered"
 							id="editabledatatable">
 							<thead>
 								<tr role="row">
-									<th>员工号</th>
-									<th>姓名</th>
-									<th>联系方式</th>
-									<th>职位</th>
+									<th>桌台编号</th>
+									<th>桌台类型</th>
+									<th>具体位置</th>
+									<th>容纳人数</th>
+									<th>目前状态</th>
 									<th>操作</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<s:iterator value="employeeList">
+								<s:iterator value="deskList">
 									<tr>
-										<td><s:property value="empNo" /></td>
-										<td><s:property value="empName" /></td>
-										<td><s:property value="empPhone" /></td>
-										<td class="center "><s:property value="empRole.roleName" /></td>
-										<td><a href="employeeAction!initModifyEmp.action?empId=<s:property value="id"/>" 
+										<td><s:property value="deskNum" /></td>
+										<td><s:property value="deskType" /></td>
+										<td><s:property value="position" /></td>
+										<td><s:property value="capacity" /></td>
+										<td>
+											<s:if test="status==0">
+												空闲
+											</s:if>
+											<s:elseif test="status==1">
+												预订
+											</s:elseif>
+											<s:else>
+												就餐
+											</s:else>
+										</td>
+										<td><a href="deskAction!initModifyDesk.action?deskId=<s:property value="id"/>" 
 											   class="btn btn-info btn-xs edit"> <i
 												class="fa fa-edit"></i> 编辑
 										</a> <a
-											href="employeeAction!deleteEmp.action?empId=<s:property value="id"/>"
+											href="deskAction!deleteDesk.action?deskId=<s:property value="id"/>"
 											class="btn btn-danger btn-xs delete"
 											onclick="return confirm('确定要删除吗？')"> <i
 												class="fa fa-trash-o"></i> 删除

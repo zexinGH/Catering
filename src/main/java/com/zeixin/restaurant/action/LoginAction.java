@@ -27,7 +27,6 @@ public class LoginAction extends BaseAction {
 	
 	public String checkUser(){
     	Employee checkEmployee = (Employee) session.get("loginEmployee");
-    	System.out.println("geg"+checkEmployee.getEmpNo()+checkEmployee.getEmpPassword());
     	employee = empService.getEmployee(
     			checkEmployee.getEmpNo(),checkEmployee.getEmpPassword());
     	if(employee != null){
@@ -58,6 +57,7 @@ public class LoginAction extends BaseAction {
 					roleService.getAuthorityByRoleId(employee.getEmpRole().getId());
 				session.put("loginEmployee", employee);
 				session.put("authorities", authorities);
+				setMessage("欢迎使用本系统");
 				return SUCCESS;
 			} catch (Exception e) {
 				setMessage(e.getMessage());

@@ -1,108 +1,53 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<s:include value="/header.jsp"></s:include>
+<body>
+    <div class="login-container animated fadeInDown">
+        <div class="loginbox bg-white">
+        	<div class="loginbox-title"></div>
+            <div class="loginbox-social">
+            	<div class="social-title ">
+                	<h2>餐饮管理系统</h2>
+                </div>
+            </div>
+            <div class="loginbox-or">
+                <div class="or-line"></div>
+                <div class="or">登录</div>
+            </div>
+            <form action="loginAction!login.action" method="post">
+	            <div class="loginbox-textbox">
+	                <input type="text" class="form-control" placeholder="员工号" name="employee.empNo"/>
+	            </div>
+	            <div class="loginbox-textbox">
+	                <input type="text" class="form-control" placeholder="密码" name="employee.empPassword"/>
+	            </div>
+	            <div class="loginbox-submit">
+	                <input type="submit" class="btn btn-primary btn-block" value="提交">
+	            </div>
+            </form>
+        </div>
+    </div>
 
-<head>
-<meta name="decorator" content="login">
-<title><s:property value="title"/></title>
+    <!--Basic Scripts-->
+    <script src="assets/js/jquery-2.0.3.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
+    <!--Beyond Scripts-->
+    <script src="assets/js/beyond.js"></script>
 
-<link rel="stylesheet" type="text/css" href="styles/style.css" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<script type="text/javascript">
-	document.onkeydown = function() {
-		if (event.keyCode == 13) {
-			document.getElementById("login").click();
-			return false;
-		}
-	};
-</head>
-</script>
-<body id="bodyLogin">
-	<form method="post" id="loginForm" name="loginForm" 
-		action="loginAction!login.action">
-		<div class="logoLogin"></div>
-		<div id="loginContainer">
-			<center>
-				<div id="loginContent">
-					<div id="loginWrapper">
-						<div class="borderLeft"></div>
-						<div class="borderRight"></div>
-						<div class="borderTop">
-							<div class="topL1">
-								<div class="topL2">
-									<div class="topL3"></div>
-								</div>
-							</div>
-						</div>
-						<div class="borderBottom">
-							<div class="bottomL1">
-								<div class="bottomL2">
-									<div class="bottomL3"></div>
-								</div>
-							</div>
-						</div>
+    <!--Google Analytics::Demo Only-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
 
-						<div id="centerCon">
-							<!--Logo区开始-->
-							<div id="loginLogo">
-								<lable>
-								<font color="blue" size="8" face="楷体">龙湖餐饮</font> </lable>
-							</div>
-							<!--Logo区结束-->
+        ga('create', 'UA-52103994-1', 'auto');
+        ga('send', 'pageview');
 
-							<!--登录信息输入开始-->
-							<div id="conForm">
-								<div class="userName">
-									<label class="fB"> 员工号： </label> 
-									<input name="employee.empNo"
-										type="text" class="midinput" maxlength="20">
-								</div>
-								<%--<div class="password" id="center" >
-									<label class="fB">
-										角色：
-									</label>
-									<select name="roleId" class="selectmiddle" >
-									    <s:iterator value="roleList">
-										<option value="<s:property value="roleId"/>" selected="selected"><s:property value="roleName"/>
-										</s:iterator>
-									</select>
-								</div> --%>
-								<div class="userPass">
-									<label id="passwordPrompt" class="fB"> 密码： </label> 
-									<input name="employee.empPassword" type="password" 
-									class="midinput" maxlength="20">
-								</div>
-								<div class="login">
-									<input name="login" id="login" value="登录" class="loginBtn"
-										type="submit"
-										onmouseover="this.style.backgroundPosition='left -24px'"
-										onmouseout="this.style.backgroundPosition='left 0px'">
-									<input name="reset" id="reset" value="重置" class="loginBtn"
-										type="reset"
-										onmouseover="this.style.backgroundPosition='left -24px'"
-										onmouseout="this.style.backgroundPosition='left 0px'">
-								</div>
-							</div>
-							<!--登录信息输入结束-->
-							<div id="infoLogin" style="display: none;">
-								<div class="infoBorder">
-									<span></span> <font id="hint"></font>
-								</div>
-							</div>
-							<!--登陆失败提示信息结束-->
-							<div id="j_role_tr" style="display:none;">
-								<select id="j_role" name="j_role" class="selectmiddle">
-									<option value="A1" />
-								</select>
-							</div>
-
-
-						</div>
-					</div>
-				</div>
-			</center>
-		</div>
-	</form>
+    </script>
 </body>
+<!--Body Ends-->
+</html>

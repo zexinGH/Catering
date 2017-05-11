@@ -16,38 +16,39 @@ import javax.persistence.Table;
 @Table(name="order_form")
 public class OrderForm extends BaseBean{
 	
-	private DiningTable tableNum;
+	private Desk desk;
 	private String orderNumber;
-	private Employee employeeName;
+	private Employee employee;
 	private List<MenuDish> menuDishs = new ArrayList<MenuDish>();
 	private Double orderPayment;
 	//	0:未支付  1：已支付
 	private Integer status;
 	
 	@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
-	@JoinColumn(name="TABLE_NUM")
-	public DiningTable getTableNum() {
-		return tableNum;
+	@JoinColumn(name="DESK_ID")
+	public Desk getDesk() {
+		return desk;
 	}
-	public void setTableNum(DiningTable tableNum) {
-		this.tableNum = tableNum;
+	public void setDesk(Desk desk) {
+		this.desk = desk;
 	}
 	
 	@Column(name="ORDER_NUMBER")
 	public String getOrderNumber() {
 		return orderNumber;
 	}
+
 	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
 	
 	@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
-	@JoinColumn(name="EMPLOYEE_NAME")
-	public Employee getEmployeeName() {
-		return employeeName;
+	@JoinColumn(name="EMPLOYEE_ID")
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setEmployeeName(Employee employeeName) {
-		this.employeeName = employeeName;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	@OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)

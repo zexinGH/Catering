@@ -41,7 +41,8 @@ public class DeskAction extends BaseAction {
 		desk.setStatus(0);
 		if(deskService.save(desk)){
 			setMessage("添加桌台成功！");
-			return SUCCESS;			
+			deskList = deskService.getAllDesk();
+			return "viewDesk";			
 		}else{
 			setMessage("添加失败!");
 			return "failure";
@@ -50,8 +51,31 @@ public class DeskAction extends BaseAction {
 	public String initModifyDesk(){
 		setTitle("编辑桌台信息");
 		desk = deskService.find(Desk.class, deskId);
+		session.put("deskId", deskId);
 		return "modifyDesk";
 	}
+	public String modifyDesk(){
+		setTitle("编辑桌台信息");
+		Desk modifyDesk = deskService.find(Desk.class, 
+				(Integer) session.get("deskId"));
+		if(deskService.getDeskByNum(desk.getDeskNum()) != null){
+			setMessage("该桌台编号已存在");
+			return "addDesk";
+		}
+		modifyDesk.setDeskNum(desk.getDeskNum());
+		modifyDesk.setDeskType(desk.getDeskType());
+		modifyDesk.setPosition(desk.getPosition());
+		modifyDesk.setCapacity(desk.getCapacity());
+		desk = modifyDesk;
+		if(deskService.update(modifyDesk)){
+			setMessage("修改桌台信息成功！");
+		}else{
+			setMessage("修改桌台信息失败！");
+			return "failure";
+		}
+		return "modifyDesk";
+	}
+	
 	public String deleteDesk(){
 		desk = deskService.find(Desk.class, deskId);
 		if(deskService.delete(desk)){

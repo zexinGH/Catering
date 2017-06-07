@@ -7,4 +7,5 @@ import com.zeixin.restaurant.bean.Desk;
 public interface DeskDao extends BaseDao<Desk> {
 	public Desk getDeskByNum(Integer deskNum);
 	public List<Desk> getAllDesk();
+	public List<Desk> getAllFreeDesk();
 }

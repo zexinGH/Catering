@@ -20,7 +20,14 @@ public class Employee extends BaseBean {
 	private String empPhone;
 	private String empAddress;
 	private Role empRole;
-	
+	private String empPic;
+	@Column(name="EMP_PIC")
+	public String getEmpPic() {
+		return empPic;
+	}
+	public void setEmpPic(String empPic) {
+		this.empPic = empPic;
+	}
 	@Column(name="EMP_NO")
 	public String getEmpNo() {
 		return empNo;

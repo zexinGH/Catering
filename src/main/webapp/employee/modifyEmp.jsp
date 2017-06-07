@@ -51,8 +51,7 @@
 									<div class="col-sm-10">
 										<span class="input-icon icon-right">
 											<input type="text" class="form-control" 
-											value="<s:property value="employee.empRole.roleName"/>">
-											
+											value="<s:property value="employee.empRole.roleName"/>"/>				
 										</span>
 									</div>
 								</div>

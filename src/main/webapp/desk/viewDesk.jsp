@@ -49,7 +49,6 @@
 							<a id="editabledatatable_new"
 								href="deskAction!initAddDesk.action" class="btn btn-default">
 								添加桌台</a>
-
 						</div>
 						<table class="table table-striped table-hover table-bordered"
 							id="editabledatatable">
@@ -75,9 +74,6 @@
 											<s:if test="status==0">
 												空闲
 											</s:if>
-											<s:elseif test="status==1">
-												预订
-											</s:elseif>
 											<s:else>
 												就餐
 											</s:else>

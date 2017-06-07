@@ -14,15 +14,22 @@
                 <div class="or-line"></div>
                 <div class="or">登录</div>
             </div>
-            <form action="loginAction!login.action" method="post">
+            <form id="loginForm" action="loginAction!login.action" method="post">
 	            <div class="loginbox-textbox">
 	                <input type="text" class="form-control" placeholder="员工号" name="employee.empNo"/>
 	            </div>
 	            <div class="loginbox-textbox">
-	                <input type="text" class="form-control" placeholder="密码" name="employee.empPassword"/>
+	                <input type="password" class="form-control" placeholder="密码" name="employee.empPassword"/>
 	            </div>
 	            <div class="loginbox-submit">
 	                <input type="submit" class="btn btn-primary btn-block" value="提交">
+	            </div>
+	            <div class="loginbox-textbox">
+	            	<span class="text-danger">
+	            		<s:property value="#request.loginMessage"/>
+	            		<s:property value="#request.noMessage"/>
+	            		<s:property value="#request.passMessage"/>
+	            	</span>
 	            </div>
             </form>
         </div>

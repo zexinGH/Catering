@@ -25,5 +25,10 @@ public class DeskServiceImpl extends BaseServiceImpl<Desk> implements
 		return deskDao.getAllDesk();
 	}
 
+	@Override
+	public List<Desk> getAllFreeDesk() {
+		return deskDao.getAllFreeDesk();
+	}
+
 
 }

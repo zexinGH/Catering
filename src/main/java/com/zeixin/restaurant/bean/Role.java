@@ -19,6 +19,7 @@ public class Role extends BaseBean{
 	
 	private String roleName;
 	private Integer roleLevel;
+	private String roleIcon;
 	private Set<Employee> employees = new HashSet<Employee>();
 	private Set<Authority> authorities = new HashSet<Authority>();
 	
@@ -55,6 +56,13 @@ public class Role extends BaseBean{
 	}
 	public void setRoleLevel(Integer roleLevel) {
 		this.roleLevel = roleLevel;
+	}
+	@Column(name="ROLE_ICON")
+	public String getRoleIcon() {
+		return roleIcon;
+	}
+	public void setRoleIcon(String roleIcon) {
+		this.roleIcon = roleIcon;
 	}
 	
 	

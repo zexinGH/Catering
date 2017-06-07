@@ -25,7 +25,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public Employee getEmployee(Object empNo, Object empPassword) {
+	public Employee getEmployee(String empNo, String empPassword) {
 		@SuppressWarnings("unchecked")	
 		List<Employee> employees = sessionFactory
 				.getCurrentSession()
@@ -39,9 +39,23 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 		}
 		return null;
 	}
+	public Employee getEmployee2(String empNo, String empPassword) {
+		@SuppressWarnings({ "unchecked", "deprecation" })	
+		List<Employee> employees = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						" select e from Employee e where e.empNo = :empNo "
+								+ " and e.empPassword = :empPassword ")
+				.setParameter("empNo", empNo)
+				.setParameter("empPassword", empPassword).list();
+		if (employees.size() > 0) {
+			return employees.get(0);
+		}
+		return null;
+	}
 
 	@Override
-	public Employee getEmployeeByEmpNo(Object empNo) {
+	public Employee getEmployeeByEmpNo(String empNo) {
 		@SuppressWarnings({ "unchecked", "deprecation" })	
 		List<Employee> employees = sessionFactory
 				.getCurrentSession().createQuery(

@@ -6,9 +6,11 @@ import com.zeixin.restaurant.bean.Employee;
 
 public interface EmployeeDao extends BaseDao<Employee>{
 		
-	public Employee getEmployee(Object empNO, Object empPassword);
+	public Employee getEmployee(String empNO, String empPassword);
 	
-	public Employee getEmployeeByEmpNo(Object empNo);
+	public Employee getEmployee2(String empNO, String empPassword);
+	
+	public Employee getEmployeeByEmpNo(String empNo);
 	
 	public List<Employee> getAllEmp();
 }

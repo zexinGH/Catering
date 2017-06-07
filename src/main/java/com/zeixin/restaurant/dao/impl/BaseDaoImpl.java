@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,7 +29,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		try {
 			sessionFactory.getCurrentSession().persist(baseBean);
 			return true;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -42,7 +41,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		try {
 			sessionFactory.getCurrentSession().save(baseBean);
 			return true;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}

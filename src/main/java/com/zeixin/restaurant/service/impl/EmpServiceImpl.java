@@ -26,13 +26,18 @@ public class EmpServiceImpl extends BaseServiceImpl<Employee> implements EmpServ
 	}*/
 
 	@Override
-	public Employee getEmployee(Object empNo, Object empPassword) {
+	public Employee getEmployee(String empNo, String empPassword) {
 		
 		return employeeDao.getEmployee(empNo, empPassword);
 	}
+	@Override
+	public Employee getEmployee2(String empNo, String empPassword) {
+		
+		return employeeDao.getEmployee2(empNo, empPassword);
+	}
 
 	@Override
-	public Employee getEmployeeByEmpNo(Object empNo) {
+	public Employee getEmployeeByEmpNo(String empNo) {
 		return employeeDao.getEmployeeByEmpNo(empNo);
 	}
 

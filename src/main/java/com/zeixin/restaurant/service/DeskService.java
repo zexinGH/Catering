@@ -7,4 +7,5 @@ import com.zeixin.restaurant.bean.Desk;
 public interface DeskService extends BaseService<Desk> {
 	public Desk getDeskByNum(Integer deskNum);
 	public List<Desk> getAllDesk();
+	public List<Desk> getAllFreeDesk();
 }

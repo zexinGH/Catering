@@ -38,7 +38,7 @@
 					</div>
 					<div class="widget-body">
 						<div id="registration-form">
-							<form role="form" action="employeeAction!addEmp.action" method="post">
+							<form id="empForm" role="form" action="employeeAction!addEmp.action" method="post">
 								<div class="col-lg-6 col-sm-6 col-xs-6">
 									<div class="form-title">职位信息</div>
 									<div class="form-group">
@@ -49,9 +49,9 @@
 										</span>
 									</div>
 									<div class="form-group">
-										<span class="input-icon icon-right"> 请选择角色 <s:select
-												list="roleList" name="roleId" listKey="id" id="roleInput"
-												listValue="roleName" class="form-control"/>															
+										<span class="input-icon icon-right"><label>请选择角色</label> 
+											<s:select list="roleList" name="roleId" listKey="id"
+											 id="roleInput" listValue="roleName" class="form-control"/>															
 										</span>
 									</div>
 									<div class="form-group">

@@ -22,7 +22,8 @@ import com.zeixin.restaurant.util.MD5Util;
 @Action(value="employeeAction", 
 results={@Result(name="addEmp",location="/employee/addEmp.jsp"),
 		 @Result(name="viewEmp",location="/employee/viewEmp.jsp"),
-		 @Result(name="modifyEmp",location="/employee/modifyEmp.jsp")})
+		 @Result(name="modifyEmp",location="/employee/modifyEmp.jsp"),
+		 @Result(name="viewPerson",location="/employee/viewPerson.jsp")})
 @Namespace("/")//使用convention-plugin插件提供的@Namespace注解为这个Action指定一个命名空间
 public class EmployeeAction extends BaseAction{  
     @Autowired
@@ -39,13 +40,13 @@ public class EmployeeAction extends BaseAction{
     
     public String initAddEmp(){
     	setTitle("注册新员工");
-    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	Employee logiEemployee = (Employee) session.get("employee");
     	roleList = roleService.getRoleList(logiEemployee);
     	return "addEmp";
     }
        
     public String addEmp(){
-    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	Employee logiEemployee = (Employee) session.get("employee");
     	roleList = roleService.getRoleList(logiEemployee);
     	if(empService.getEmployeeByEmpNo(employee.getEmpNo()) != null){
     		setMessage("该员工号已被注册");
@@ -55,6 +56,7 @@ public class EmployeeAction extends BaseAction{
 		employee.setDateModified(new Date());
 		employee.setEmpRole(roleService.getRoleById(roleId));
 		employee.setEmpPassword(MD5Util.calc(employee.getEmpPassword()));
+		employee.setEmpPic("assets/img/avatars/noavatar_middle.gif");
 		if(empService.save(employee)){
 			setMessage("注册员工成功！");
 			return SUCCESS;
@@ -66,16 +68,21 @@ public class EmployeeAction extends BaseAction{
     
     public String initModifyEmp(){
     	setTitle("修改员工信息");
-    	Employee logiEemployee = (Employee) session.get("loginEmployee");
-    	employee = empService.find(Employee.class, empId);  	
-    	roleList = roleService.getRoleList(logiEemployee);
+    	Employee logiEmployee = (Employee) session.get("employee");
+    	employee = empService.find(Employee.class, empId);
+    	if(logiEmployee.getEmpRole().getRoleLevel()<
+    			employee.getEmpRole().getRoleLevel()){
+    		setMessage("你无权限进行此操作！");
+    		return "failure";
+    	}  	
+    	roleList = roleService.getRoleList(logiEmployee);
     	session.put("empId", empId);
     	return "modifyEmp";
     }
     
     public String modifyEmp(){
     	setTitle("修改员工信息");
-    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	Employee logiEemployee = (Employee) session.get("employee");
     	roleList = roleService.getRoleList(logiEemployee);
     	
     	Employee modifyEmployee = empService.find(Employee.class, 
@@ -86,26 +93,51 @@ public class EmployeeAction extends BaseAction{
     	modifyEmployee.setEmpSex(employee.getEmpSex());
     	modifyEmployee.setEmpAge(employee.getEmpAge());
     	modifyEmployee.setDateModified(new Date());
-    	modifyEmployee.setEmpRole(roleService.getRoleById(roleId));
+    	modifyEmployee.setEmpRole(roleService.find(Role.class, roleId));
     	employee = modifyEmployee;
 		if(empService.update(modifyEmployee)){
 			setMessage("员工信息修改成功！");
 		}else{
 			setMessage("员工信息修改失败");
+			return ERROR;
 		}
 		return "modifyEmp";
+    }
+    public String initViewPerson(){
+    	setTitle("个人信息");
+    	employee = (Employee) session.get("employee");
+    	return "viewPerson";    	
+    }
+    
+    public String modifyPerson(){
+    	setTitle("个人信息");
+    	Employee modifyEmployee = (Employee) session.get("employee");
+    	modifyEmployee.setDateModified(new Date());
+    	modifyEmployee.setEmpName(employee.getEmpName());
+    	modifyEmployee.setEmpAddress(employee.getEmpAddress());
+    	modifyEmployee.setEmpPhone(employee.getEmpPhone());
+    	modifyEmployee.setEmpSex(employee.getEmpSex());
+    	modifyEmployee.setEmpAge(employee.getEmpAge());
+    	employee = modifyEmployee;
+    	if(empService.update(modifyEmployee)){
+			setMessage("员工信息修改成功！");
+		}else{
+			setMessage("员工信息修改失败");
+			return ERROR;
+		}
+    	return "viewPerson";
     }
     
     public String deleteEmp(){
     	employee = empService.find(Employee.class, empId);
-    	Employee logiEemployee = (Employee) session.get("loginEmployee");
+    	Employee logiEemployee = (Employee) session.get("employee");
     	if(employee.getEmpRole().getRoleLevel() > logiEemployee.getEmpRole().getRoleLevel()){
     		setMessage("你无权限进行此操作！");
     		return "failure";
     	}
     	if(employee.getId().equals(logiEemployee.getId())){
     		setMessage("不能删除你自己！");
-    		return "failure";
+    		return "error";
     	}
     	if(empService.delete(employee)){
     		return this.viewEmp();
@@ -121,7 +153,7 @@ public class EmployeeAction extends BaseAction{
     	return "viewEmp";
     }
 
-	public EmpService getEmpService() {
+    public EmpService getEmpService() {
 		return empService;
 	}
 

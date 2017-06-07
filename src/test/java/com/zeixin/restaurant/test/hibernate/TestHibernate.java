@@ -2,12 +2,15 @@ package com.zeixin.restaurant.test.hibernate;
 
 import java.util.List;
 
+import org.hibernate.query.Query;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.zeixin.restaurant.bean.Authority;
+import com.zeixin.restaurant.bean.OrderForm;
+import com.zeixin.restaurant.bean.Role;
 import com.zeixin.restaurant.service.RoleService;
 import com.zeixin.restaurant.service.EmpService;
 
@@ -32,12 +35,15 @@ public class TestHibernate {
 	
 	@Test
 	public void testSaveMethod(){
-		List<Authority> authorities = HibernateUtils.getSessionFactory()
+		/*List<Authority> authorities = HibernateUtils.getSessionFactory()
 				.openSession().createQuery(" select r.authorities from Role r "
 						+ "where r.id = :id")
 				.setParameter("id", 1).list();	
 		for(Authority a:authorities){
 			System.out.println(a.getAuthorityName());
-		}
+		}*/
+		List<Role> role =  (List<Role>) HibernateUtils.getSessionFactory()
+				.openSession().createQuery(" from Role order by dateCreated desc ").list();	
+		System.out.println(role.get(0).getRoleName());
 	}
 }

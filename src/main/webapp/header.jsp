@@ -33,12 +33,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="assets/css/demo.min.css" rel="stylesheet" />
 	<link href="assets/css/typicons.min.css" rel="stylesheet" />
 	<link href="assets/css/animate.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/bootstrapValidator.css"/>
 	<link rel="stylesheet" href="assets/css/cropper/cropper.min.css" >
 	<link rel="stylesheet" href="assets/css/sitelogo/sitelogo.css">
 	<link id="skin-link" href="" rel="stylesheet" type="text/css" />
 
 	<!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
 	<script src="assets/js/skins.min.js"></script>
-
   </head>
 

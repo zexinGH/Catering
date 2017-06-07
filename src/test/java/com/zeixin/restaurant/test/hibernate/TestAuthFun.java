@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 
 import com.zeixin.restaurant.bean.Authority;
 import com.zeixin.restaurant.bean.Function;
+import com.zeixin.restaurant.bean.OrderForm;
 import com.zeixin.restaurant.test.hibernate.HibernateUtils;
 
 public class TestAuthFun {
@@ -22,11 +23,11 @@ public class TestAuthFun {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Query query = session.createQuery(
-					" from Authority a where a.authorityName = '桌台信息管理'");
+					" from Authority a where a.authorityName = '营业额统计'");
 			List<Authority> list = query.list();
 			for(Authority authority : list){
 				Function function = new Function();
-				function.setFunName("桌台列表");
+				function.setFunName("统计日营业额");
 				function.setAuthority(authority);
 				function.setDateCreated(new Date());
 				function.setDateModified(new Date());

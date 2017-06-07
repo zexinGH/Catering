@@ -35,7 +35,19 @@ public class DeskDaoImpl extends BaseDaoImpl<Desk> implements DeskDao {
 		@SuppressWarnings({ "unchecked", "deprecation" })
 		List<Desk> desks = sessionFactory
 				.getCurrentSession().createQuery(
-				" from Desk ").list();
+				" from Desk order by deskNum ").list();
+		if(desks.size()>0){
+			return desks;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Desk> getAllFreeDesk() {
+		@SuppressWarnings({ "unchecked", "deprecation" })
+		List<Desk> desks = sessionFactory
+				.getCurrentSession().createQuery(
+				" from Desk d where d.status = 0 order by deskNum ").list();
 		if(desks.size()>0){
 			return desks;
 		}
